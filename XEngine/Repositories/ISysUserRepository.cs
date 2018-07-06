@@ -9,7 +9,7 @@ namespace XEngine.Repositories
     public interface ISysUserRepository : IDisposable
     {
         IEnumerable<SysUser> GetUsers();
-        SysUser GetUserByID(int ID);
+        SysUser GetUserByID(int userID);
 
         void InsertUser(SysUser user);
         void UpdateUser(SysUser user);
