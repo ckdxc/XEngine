@@ -21,9 +21,23 @@ namespace XEngine.Repositories
             context.SysUsers.Remove(sysUser);
         }
 
+        private bool disposed = false;
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        public void Disposed(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
         }
 
         public SysUser GetUserByID(int userID)
