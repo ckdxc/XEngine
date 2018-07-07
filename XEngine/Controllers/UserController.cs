@@ -20,10 +20,12 @@ namespace XEngine.Controllers
         //}
 
         private IGenericRepository<SysUser> userRepository = new GenericRepository<SysUser>(new XEngineContext());
+        private UnitOfWork unitOfWork = new UnitOfWork();
         // GET: User
         public ActionResult Index()
         {
-            var users = userRepository.Get();
+            //var users = userRepository.Get();
+            var users = unitOfWork.SysUserRepository.Get(orderBy: q => q.OrderBy(u => u.Name));
             return View(users);
         }
     }
